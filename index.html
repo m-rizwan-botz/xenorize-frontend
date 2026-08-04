@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>𝚇𝙴𝙽𝙾𝚁𝙸𝚉𝙴 𝙼𝙳 | 𝙿𝚊𝚒𝚛𝚒𝚗𝚐</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes gradientBG { 0%{bg:0% 50%} 50%{bg:100% 50%} 100%{bg:0% 50%} }
+.glass {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 25px;
+    padding: 45px 35px;
+    width: 90%;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 245, 255, 0.25);
+}
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #00f5ff, #ff00ff, #00f5ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+.subtitle { color: #00f5ff; font-size: 1rem; letter-spacing: 3px; margin-bottom: 30px; }
+.input-box {
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,245,255,0.3);
+    background: rgba(0,0,0,0.3);
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    outline: none;
+}
+.btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+}
+.btn-pair {
+    background: linear-gradient(90deg, #00f5ff, #ff00ff);
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.6);
+    animation: pulse 2s infinite;
+}
+@keyframes pulse { 50% { transform: scale(1.03); box-shadow: 0 0 45px rgba(255, 0, 255, 0.9); } }
+.btn-channel { background: #25D366; }
+.btn-owner { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); }
+.btn:hover { transform: translateY(-3px); }
+#result { margin-top: 20px; font-size: 1.2rem; color: #00f5ff; font-weight: 600; }
+.footer { margin-top: 25px; font-size: 0.9rem; color: #aaa; }
+</style>
+</head>
+<body>
+<div class="glass">
+    <div class="logo">𝚇𝙴𝙽𝙾𝚁𝙸𝚉𝙴 𝙼𝙳</div>
+    <div class="subtitle">𝙱𝚈 𝙼 𝚁𝙸𝚉𝚆𝙰𝙽 𝚃𝙴𝙲𝙷𝚇</div>
+    
+    <input type="text" id="number" class="input-box" placeholder="923xx xxxxxxx - Number likho">
+    
+    <!-- YE BUTTON RAILWAY KO HIT KAREGA -->
+    <button onclick="getPairing()" class="btn btn-pair">⚡ 𝙶𝙴𝚃 𝙿𝙰𝙸𝚁𝙸𝙽𝙶 𝙲𝙾𝙳𝙴 ⚡</button>
+
+    <div id="result"></div>
+
+    <a href="https://whatsapp.com/channel/0029Vb4Jh4wHgZWirfaYva0H" target="_blank" class="btn btn-channel">📢 𝙹𝙾𝙸𝙽 𝚆𝙷𝙰𝚃𝚂𝙰𝙿 𝙲𝙷𝙰𝙽𝙴𝙻</a>
+    <a href="https://wa.me/923436259742" target="_blank" class="btn btn-owner">👑 𝙲𝙾𝙽𝚃𝙰𝙲𝚃 𝙾𝚆𝙽𝙴𝚁</a>
+
+    <div class="footer">𓆩 𝙿𝙾𝚆𝙴𝚁𝙴𝙳 𝙱𝚈 𝙼 𝚁𝙸𝚉𝚆𝙰𝙽 𝚃𝙴𝙲𝙷𝚇 𓆪</div>
+</div>
+
+<script>
+const RAILWAY_URL = "https://xenorizemdv2-production.up.railway.app"; // <-- TUMHARA RAILWAY LINK
+
+async function getPairing() {
+    const number = document.getElementById('number').value;
+    const resultDiv = document.getElementById('result');
+    if(number.length < 10) {
+        resultDiv.innerHTML = "❌ Sahi number likho";
+        return;
+    }
+    resultDiv.innerHTML = "⏳ Code generate ho raha hai...";
+    
+    const res = await fetch(`${RAILWAY_URL}/api/pair`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({number: number})
+    });
+    const data = await res.json();
+    
+    if(data.success && data.code) {
+        resultDiv.innerHTML = `✅ 𝚈𝙾𝚄𝚁 𝙲𝙾𝙳𝙴: <b style="font-size:1.5rem; color:#ff00ff">${data.code}</b><br>WhatsApp me jao > Linked Devices > Link with code`;
+    } else {
+        resultDiv.innerHTML = `❌ ${data.error || 'Error aa gaya'}`;
+    }
+}
+</script>
+</body>
+  </html>
